@@ -12,11 +12,14 @@ Plataforma web para estudar para o ENAMED resolvendo as questões oficiais (2025
 - **Cloudflare D1** (SQLite) para usuários, sessões, questões, respostas, reportes e pagamentos.
 - Front-end em JavaScript puro, sem build.
 
+## Como os dados chegam ao banco
+
+As questões e explicações (`data/*.json`) vão embutidas no código do Worker. Na primeira requisição depois de um deploy, o Worker cria as tabelas que faltarem e, se os dados mudaram, atualiza a tabela `questoes`. Não é preciso rodar nenhum comando de banco: basta dar push.
+
 ## Rodar localmente
 
 ```bash
 npm install
-npm run db:local      # cria as tabelas e carrega as questões no D1 local
 npm run dev           # http://localhost:8787
 ```
 
@@ -29,18 +32,11 @@ npx wrangler d1 execute enamed --local --command \
 
 ## Publicar na Cloudflare
 
-1. Entre na sua conta: `npx wrangler login`
-2. Crie o banco: `npx wrangler d1 create enamed`
-   Copie o `database_id` que aparecer e cole em `wrangler.jsonc` no lugar de `00000000-...`.
-3. Carregue as tabelas e as questões no banco remoto: `npm run db:remoto`
-4. Configure o token do Mercado Pago (Credenciais de produção → Access Token):
-   `npx wrangler secret put MP_ACCESS_TOKEN`
-5. Publique: `npm run deploy`
-   O endereço será algo como `https://enamed.SEU-SUBDOMINIO.workers.dev`.
-6. Atualize `URL_BASE` em `wrangler.jsonc` com esse endereço (ou com o seu domínio) e publique de novo. Ele é usado no retorno do pagamento e no webhook.
-7. No painel do Mercado Pago, o webhook já vai configurado em cada pagamento (`/api/pagamento/webhook`), não precisa cadastrar.
+O Worker `enamed` está conectado a este repositório (Workers Builds): cada push na `main` publica sozinho. O banco D1 `enamed` já existe e está no `wrangler.jsonc`.
 
-**Deploy automático pelo git:** no painel da Cloudflare, em Workers & Pages → o worker `enamed` → Settings → Builds, conecte este repositório. Cada push na `main` publica sozinho. Os passos 2 a 4 continuam sendo feitos uma vez pelo terminal.
+Falta só o pagamento: no painel da Cloudflare, em Workers & Pages → `enamed` → Settings → Variables and Secrets, adicione o secret `MP_ACCESS_TOKEN` com o Access Token de produção do Mercado Pago. Sem ele, o botão de pagar mostra "Pagamento ainda não configurado".
+
+`URL_BASE` pode ficar vazio: o site usa o endereço de onde foi acessado. Preencha só se quiser forçar um domínio.
 
 ### Tornar alguém administrador (acesso sem pagamento)
 
@@ -55,7 +51,7 @@ npx wrangler d1 execute enamed --remote --command "UPDATE usuarios SET admin = 1
 - `public/img/`: imagens das questões.
 - `scripts/build_seed.mjs`: gera o `seed.sql` a partir dos JSON. Se uma explicação mudar, ela volta a ficar ativa.
 
-Ao atualizar uma questão ou explicação, rode `npm run db:remoto` de novo; os dados são atualizados sem apagar as respostas dos usuários.
+Ao atualizar uma questão ou explicação, edite os JSON e dê push. Os dados são atualizados sem apagar as respostas dos usuários.
 
 ### Controle de qualidade
 
@@ -67,7 +63,7 @@ npx wrangler d1 execute enamed --remote --command "SELECT questao_id, COUNT(DIST
 
 ### Gabarito de 2026
 
-O gabarito de 2026 ainda é preliminar. Quando o Inep publicar o definitivo (previsto para 04/12/2026), atualize `gabarito`, `status` e `gabarito_oficial` em `data/questoes.json`, revise as explicações das questões que mudarem e rode `npm run db:remoto`.
+O gabarito de 2026 ainda é preliminar. Quando o Inep publicar o definitivo (previsto para 04/12/2026), atualize `gabarito`, `status` e `gabarito_oficial` em `data/questoes.json`, revise as explicações das questões que mudarem e dê push.
 
 ### Extração dos PDFs
 

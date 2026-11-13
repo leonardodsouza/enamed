@@ -1,3 +1,4 @@
+import { garantirDados } from "./dados";
 import {
   aleatorio,
   apagarSessao,
@@ -295,7 +296,7 @@ async function erros(env: Env, req: Request) {
 async function checkout(env: Env, req: Request) {
   const u = await exigirUsuario(env, req);
   if (!env.MP_ACCESS_TOKEN) throw new ErroHttp(503, "Pagamento ainda não configurado.");
-  const base = env.URL_BASE.replace(/\/$/, "");
+  const base = (env.URL_BASE && !env.URL_BASE.includes("SEU-SUBDOMINIO") ? env.URL_BASE : new URL(req.url).origin).replace(/\/$/, "");
   const r = await fetch("https://api.mercadopago.com/checkout/preferences", {
     method: "POST",
     headers: { Authorization: `Bearer ${env.MP_ACCESS_TOKEN}`, "Content-Type": "application/json" },
@@ -371,6 +372,7 @@ export default {
     const p = url.pathname;
     if (!p.startsWith("/api/")) return env.ASSETS.fetch(req);
     try {
+      await garantirDados(env.DB);
       const m = req.method;
       if (m === "POST" && p === "/api/cadastro") return await cadastro(env, req, url);
       if (m === "POST" && p === "/api/login") return await login(env, req, url);

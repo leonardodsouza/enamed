@@ -13,14 +13,14 @@
     {
       "binding": "DB",
       "database_name": "enamed",
-      // Troque pelo id gerado em `npx wrangler d1 create enamed`
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "9059e441-c058-4860-bf0c-5b710ecb609b",
       "migrations_dir": "migrations"
     }
   ],
   "vars": {
     "PRECO_MENSAL": "49.90",
     "DIAS_POR_PAGAMENTO": "30",
-    "URL_BASE": "https://enamed.SEU-SUBDOMINIO.workers.dev"
+    // Deixe vazio para usar o endereço de onde o site foi acessado
+    "URL_BASE": ""
   }
 }

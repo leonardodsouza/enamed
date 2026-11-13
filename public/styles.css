@@ -148,8 +148,8 @@ dialog textarea { width: 100%; min-height: 110px; padding: 10px; border-radius: 
 
 @media (max-width: 560px) {
   .topo { padding: 10px 12px; }
-  .marca { font-size: 15px; white-space: nowrap; }
-  nav { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 0; }
+  .marca .nome { display: none; }
+  nav { justify-content: flex-end; gap: 0; }
   nav a, nav button { padding: 6px 8px; font-size: 14px; white-space: nowrap; }
   .cartao { padding: 18px; }
   h1 { font-size: 24px; }

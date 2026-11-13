@@ -1,0 +1,19 @@
+{
+  "name": "enamed",
+  "version": "1.0.0",
+  "description": "Plataforma de questões do ENAMED",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "seed": "node scripts/build_seed.mjs",
+    "db:local": "wrangler d1 migrations apply enamed --local && node scripts/build_seed.mjs && wrangler d1 execute enamed --local --file seed.sql",
+    "db:remoto": "wrangler d1 migrations apply enamed --remote && node scripts/build_seed.mjs && wrangler d1 execute enamed --remote --file seed.sql",
+    "tipos": "wrangler types && tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.162.0"
+  },
+  "private": true,
+  "type": "module"
+}

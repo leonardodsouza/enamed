@@ -368,33 +368,22 @@ async function telaRevisar() {
   app.innerHTML = topo + `<article class="cartao">
     <div class="meta"><span class="tag">${esc(q.area_nome)}</span><span>${esc(q.fonte)}</span></div>
     <div class="enunciado">${paragrafos(q.enunciado)}${q.imagens.map((i) => `<img src="/img/${esc(i)}" alt="Imagem da questão" loading="lazy">`).join("")}</div>
-    <div id="verso"><div class="acoes"><button class="botao" id="revelar">Mostrar resposta</button>
-      <button class="botao sec" id="alts">Ver alternativas</button></div>
+    <div id="verso"><div class="acoes"><button class="botao" id="revelar">Mostrar resposta</button></div>
       <p class="num" style="margin-top:10px">Pense na resposta antes de revelar. Atalho: barra de espaço.</p></div>
   </article>`;
-  document.getElementById("alts").onclick = (ev) => {
-    ev.target.remove();
-    document.getElementById("verso").insertAdjacentHTML("beforebegin",
-      `<div class="alts">${Object.entries(q.alternativas).map(([l, t]) => `<div class="alt" style="cursor:default"><span class="letra">${l}</span><span>${esc(t)}</span><span></span></div>`).join("")}</div>`);
-  };
   const revelar = () => {
     const nomes = { errei: "Errei", dificil: "Difícil", facil: "Fácil" };
     document.getElementById("verso").innerHTML = `
       <div class="explicacao">
-        <h3 style="margin-top:0">Resposta</h3>
-        <p class="chave"><b>${esc(c.resposta.letra)})</b> ${esc(c.resposta.texto || "")}</p>
-        ${c.ponto_chave ? `<h3>Ponto-chave</h3><p>${esc(c.ponto_chave)}</p>` : ""}
-        ${c.resumo ? `<h3>Raciocínio</h3>${paragrafos(c.resumo)}` : ""}
+        <h3 style="margin-top:0">Como responder</h3>
+        ${c.resumo ? paragrafos(c.resumo) : `<p class="sub">A explicação desta questão está em revisão.</p>`}
+        ${c.ponto_chave ? `<p class="chave">${esc(c.ponto_chave)}</p>` : ""}
         <p class="aviso-ia" style="margin-top:16px">Explicação gerada por IA, pode conter erros. O gabarito é o oficial do Inep${c.gabarito_oficial === "preliminar" ? " (preliminar)" : ""}.</p>
         <h3>Como foi?</h3>
         <div class="acoes">${c.opcoes.map((o, i) => `<button class="botao ${o.nota === "facil" ? "" : "sec"}" data-nota="${o.nota}">${nomes[o.nota]} <small style="font-weight:400;opacity:.8">· ${esc(o.espera)}</small></button>`).join("")}</div>
         <p class="num" style="margin-top:10px">Atalhos: 1 Errei · 2 Difícil · 3 Fácil</p>
       </div>`;
     document.querySelectorAll("[data-nota]").forEach((b) => (b.onclick = () => avaliar(b.dataset.nota)));
-    document.querySelectorAll(".alts .alt").forEach((a) => {
-      if (a.querySelector(".letra").textContent === c.resposta.letra) a.classList.add("certa");
-    });
-    document.getElementById("alts")?.remove();
     revelado = true;
   };
   let revelado = false, enviando = false;

@@ -151,7 +151,7 @@ function telaAssinatura() {
 }
 
 // --- estudo ---
-const filtro = { area: "", ano: "", modo: "ineditas" };
+const filtro = { area: "", tema: "", ano: "", modo: "ineditas" };
 try { Object.assign(filtro, JSON.parse(localStorage.getItem("filtro") || "{}")); } catch {}
 
 async function telaEstudar(idFixo) {
@@ -162,16 +162,28 @@ async function telaEstudar(idFixo) {
   <div class="filtros">
     <select id="fArea" aria-label="Área"><option value="">Todas as áreas (${total("")})</option>
       ${Object.entries(areas).map(([k, v]) => `<option value="${k}">${v} (${total(k)})</option>`).join("")}</select>
+    <select id="fTema" aria-label="Tema"></select>
     <select id="fAno" aria-label="Ano"><option value="">2025 e 2026</option><option>2025</option><option>2026</option></select>
     <select id="fModo" aria-label="Quais questões">
       <option value="ineditas">Só as que não fiz</option><option value="todas">Todas</option><option value="erradas">Só as que errei</option></select>
   </div>
   <div id="questao"></div>`;
-  for (const [id, k] of [["fArea", "area"], ["fAno", "ano"], ["fModo", "modo"]]) {
+  const fTema = document.getElementById("fTema");
+  const montarTemas = () => {
+    const ts = {};
+    contagem.filter((c) => c.area === filtro.area && c.tema).forEach((c) => (ts[c.tema] = (ts[c.tema] || 0) + c.total));
+    fTema.innerHTML = `<option value="">Todos os temas</option>` +
+      Object.entries(ts).sort((a, b) => a[0].localeCompare(b[0], "pt")).map(([t, n]) => `<option value="${esc(t)}">${esc(t)} (${n})</option>`).join("");
+    fTema.hidden = !filtro.area;
+    if (!ts[filtro.tema]) filtro.tema = "";
+  };
+  montarTemas();
+  for (const [id, k] of [["fArea", "area"], ["fTema", "tema"], ["fAno", "ano"], ["fModo", "modo"]]) {
     const el = document.getElementById(id);
     el.value = filtro[k];
     el.onchange = () => {
       filtro[k] = el.value;
+      if (k === "area") { filtro.tema = ""; montarTemas(); }
       try { localStorage.setItem("filtro", JSON.stringify(filtro)); } catch {}
       proximaQuestao();
     };
@@ -186,6 +198,7 @@ let atual = null;
 async function proximaQuestao() {
   const p = new URLSearchParams({ modo: filtro.modo });
   if (filtro.area) p.set("area", filtro.area);
+  if (filtro.tema) p.set("tema", filtro.tema);
   if (filtro.ano) p.set("ano", filtro.ano);
   if (atual) p.set("pular", atual.id);
   const { questao } = await api(`/api/questoes/proxima?${p}`);
@@ -304,35 +317,81 @@ function reportar(q) {
 
 async function telaDesempenho() {
   if (!sessao?.assinatura_ativa) return (location.hash = "#/assinatura");
-  const { areas, por_area, totais, ultimas_24h } = await api("/api/desempenho");
-  const feitas = por_area.reduce((s, a) => s + a.feitas, 0);
-  const acertos = por_area.reduce((s, a) => s + a.acertos, 0);
-  const totalBanco = totais.reduce((s, a) => s + a.total, 0);
-  const linhas = Object.entries(areas).map(([k, nome]) => {
-    const a = por_area.find((x) => x.area === k) || { feitas: 0, acertos: 0 };
-    const t = totais.find((x) => x.area === k)?.total || 0;
-    const pct = a.feitas ? Math.round((a.acertos / a.feitas) * 100) : null;
-    return { k, nome, pct, ...a, t };
+  const { areas, temas, semanas, geral } = await api("/api/desempenho");
+  const pct = (a, n) => (n ? Math.round((a / n) * 100) : null);
+  const soma = (l, k) => l.reduce((s, x) => s + (x[k] || 0), 0);
+  const feitas = soma(temas, "feitas"), acertos = soma(temas, "acertos"), total = soma(temas, "total");
+  const media = (l) => {
+    const n = soma(l, "n_alunos");
+    return n ? Math.round(l.reduce((s, x) => s + (x.media_alunos || 0) * x.n_alunos, 0) / n) : null;
+  };
+  const seg = (ms) => (ms ? `${Math.round(ms / 1000)} s` : "–");
+
+  // linha com barra do aluno e marca da média dos alunos
+  const linha = (nome, a, f, t, m, extra = "") => {
+    const p = pct(a, f);
+    const dica = `${nome}: ${p === null ? "não iniciado" : `${p}% de acerto em ${f} questões`}${m !== null ? ` · média dos alunos ${m}%` : ""}`;
+    return `<div class="linha-area" title="${esc(dica)}"><span>${esc(nome)}${extra}</span>
+      <div class="barra">${p !== null ? `<span style="width:${p}%"></span>` : ""}${m !== null ? `<i class="media" style="left:${m}%"></i>` : ""}</div>
+      <span class="num">${p === null ? `0/${t} feitas` : `${p}% · ${f}/${t}`}</span></div>`;
+  };
+
+  // evolução semanal (8 semanas, mais antiga à esquerda)
+  const sem = Array.from({ length: 8 }, (_, i) => semanas.find((s) => s.semana === 7 - i) || { semana: 7 - i, respostas: 0, acertos: 0 });
+  const rotSem = (n) => (n === 0 ? "esta" : n === 1 ? "passada" : `há ${n}`);
+  const evolucao = sem.some((s) => s.respostas)
+    ? `<div class="colunas">${sem.map((s) => {
+        const p = pct(s.acertos, s.respostas);
+        return `<div class="coluna" title="${esc(`Semana ${rotSem(s.semana)}: ${s.respostas} respostas${p !== null ? `, ${p}% de acerto` : ""}`)}">
+          <span class="v">${p === null ? "" : p + "%"}</span>
+          <div class="trilho"><span style="height:${p ?? 0}%"></span></div>
+          <span class="r">${rotSem(s.semana)}</span><span class="r">${s.respostas || ""}</span></div>`;
+      }).join("")}</div>
+      <p class="nota">Altura = % de acerto na semana. Embaixo, quantas questões você respondeu.</p>`
+    : `<p class="sub" style="margin:0">Responda algumas questões para ver sua evolução semana a semana.</p>`;
+
+  // onde focar: temas com pelo menos 3 feitas e menor acerto; depois temas não iniciados
+  const fracos = temas.filter((t) => t.feitas >= 3).map((t) => ({ ...t, p: pct(t.acertos, t.feitas) }))
+    .filter((t) => t.p < 70).sort((a, b) => a.p - b.p).slice(0, 4);
+  const naoIniciados = temas.filter((t) => !t.feitas).sort((a, b) => b.total - a.total).slice(0, 4 - fracos.length);
+  const foco = [...fracos.map((t) => ({ ...t, motivo: `${t.p}% de acerto` })), ...naoIniciados.map((t) => ({ ...t, motivo: "ainda não começou" }))];
+
+  const porArea = Object.entries(areas).map(([k, nome]) => {
+    const l = temas.filter((t) => t.area === k);
+    return { k, nome, l, f: soma(l, "feitas"), a: soma(l, "acertos"), t: soma(l, "total"), m: media(l) };
   });
-  const fracas = linhas.filter((l) => l.feitas >= 5).sort((a, b) => a.pct - b.pct).slice(0, 3);
+
   app.innerHTML = `
   <h1>Desempenho</h1>
   <div class="kpis">
-    <div class="kpi"><b>${feitas ? Math.round((acertos / feitas) * 100) + "%" : "–"}</b><span>de acerto geral</span></div>
-    <div class="kpi"><b>${feitas} / ${totalBanco}</b><span>questões feitas</span></div>
-    <div class="kpi"><b>${ultimas_24h}</b><span>respostas nas últimas 24 h</span></div>
+    <div class="kpi"><b>${feitas ? pct(acertos, feitas) + "%" : "–"}</b><span>de acerto geral${media(temas) !== null ? ` · média dos alunos ${media(temas)}%` : ""}</span></div>
+    <div class="kpi"><b>${feitas} / ${total}</b><span>questões feitas</span></div>
+    <div class="kpi"><b>${geral?.dias_estudo || 0}</b><span>dias com estudo · ${geral?.ultimas_24h || 0} respostas nas últimas 24 h</span></div>
+    <div class="kpi"><b>${seg(geral?.tempo_medio)}</b><span>tempo médio por questão (na prova: 3 min)</span></div>
   </div>
+
+  ${foco.length ? `<div class="cartao" style="margin-bottom:16px"><h2>Onde focar agora</h2>
+    <div class="lista-erros">${foco.map((t) => `<div class="item-erro" style="grid-template-columns:1fr auto;align-items:center">
+      <div><b>${esc(t.tema)}</b><p>${esc(areas[t.area])} · ${esc(t.motivo)} · ${t.total} questões no banco</p></div>
+      <a class="botao peq" href="#/estudar" data-area="${t.area}" data-tema="${esc(t.tema)}" data-modo="${t.feitas < t.total ? "ineditas" : "erradas"}">Estudar</a></div>`).join("")}</div></div>` : ""}
+
+  <div class="cartao" style="margin-bottom:16px"><h2>Evolução</h2>${evolucao}</div>
+
   <div class="cartao">
-    <h2>Acerto por área</h2>
-    <p class="sub">Conta a última resposta de cada questão.</p>
-    <div class="grade">${linhas.map((l) => `
-      <div class="linha-area"><span>${esc(l.nome)}</span>
-        <div class="barra" title="${l.pct ?? 0}% de acerto"><span style="width:${l.pct ?? 0}%"></span></div>
-        <span class="num">${l.pct === null ? "não iniciada" : `${l.pct}% · ${l.feitas}/${l.t} feitas`}</span></div>`).join("")}
-    </div>
-    ${fracas.length ? `<h3 style="margin-top:24px">Onde focar agora</h3><div class="acoes">${fracas.map((f) => `<a class="botao sec peq" href="#/estudar" data-area="${f.k}">${esc(f.nome)} · ${f.pct}%</a>`).join("")}</div>` : `<p class="sub" style="margin-top:20px">Responda pelo menos 5 questões de uma área para ver onde focar.</p>`}
+    <h2>Acerto por área e tema</h2>
+    <p class="sub">Conta a última resposta de cada questão. <span class="legenda"><i class="media"></i> média dos alunos</span></p>
+    ${porArea.map((ar) => `<details class="bloco-area"${ar.f ? " open" : ""}>
+      <summary>${linha(ar.nome, ar.a, ar.f, ar.t, ar.m)}</summary>
+      <div class="grade temas">${ar.l.sort((x, y) => y.total - x.total).map((t) => linha(t.tema, t.acertos, t.feitas, t.total,
+        t.n_alunos ? Math.round(t.media_alunos) : null,
+        ` <a href="#/estudar" class="mini" data-area="${t.area}" data-tema="${esc(t.tema)}" data-modo="todas" title="Estudar este tema">estudar</a>`)).join("")}</div>
+    </details>`).join("")}
   </div>`;
-  app.querySelectorAll("[data-area]").forEach((a) => (a.onclick = () => { filtro.area = a.dataset.area; filtro.modo = "ineditas"; try { localStorage.setItem("filtro", JSON.stringify(filtro)); } catch {} }));
+  app.querySelectorAll("[data-tema]").forEach((a) => (a.onclick = (e) => {
+    e.stopPropagation();
+    Object.assign(filtro, { area: a.dataset.area, tema: a.dataset.tema, modo: a.dataset.modo, ano: "" });
+    try { localStorage.setItem("filtro", JSON.stringify(filtro)); } catch {}
+  }));
 }
 
 async function telaErros() {

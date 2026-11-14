@@ -161,3 +161,27 @@ dialog textarea { width: 100%; min-height: 110px; padding: 10px; border-radius: 
 .tabela table { border-collapse: collapse; font-size: 14px; min-width: 100%; }
 .tabela th, .tabela td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--linha); }
 .tabela th { color: var(--suave); font-weight: 600; }
+
+/* desempenho */
+.barra { position: relative; overflow: visible; }
+.barra span { border-radius: 99px; }
+.barra .media, .legenda .media { position: absolute; top: -4px; width: 2px; height: 18px; margin-left: -1px; background: var(--texto); border-radius: 1px; opacity: .55; }
+.legenda { white-space: nowrap; }
+.legenda .media { position: relative; display: inline-block; top: 3px; height: 14px; margin: 0 4px 0 6px; }
+.bloco-area { border-top: 1px solid var(--linha); padding: 10px 0; }
+.bloco-area:first-of-type { border-top: 0; }
+.bloco-area summary { list-style: none; cursor: pointer; font-weight: 600; }
+.bloco-area summary::-webkit-details-marker { display: none; }
+.bloco-area summary .linha-area > span:first-child::before { content: "▸ "; color: var(--suave); }
+.bloco-area[open] summary .linha-area > span:first-child::before { content: "▾ "; }
+.grade.temas { margin: 10px 0 4px; padding-left: 16px; font-size: 14px; font-weight: 400; }
+.grade.temas .barra { height: 8px; }
+.mini { font-size: 12px; margin-left: 4px; }
+.colunas { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; align-items: end; }
+.coluna { display: grid; justify-items: center; gap: 4px; font-variant-numeric: tabular-nums; }
+.coluna .v { font-size: 12px; color: var(--suave); min-height: 1.2em; }
+.coluna .r { font-size: 11px; color: var(--suave); line-height: 1.2; text-align: center; min-height: 1.2em; }
+.nota { font-size: 13px; color: var(--suave); margin: 8px 0 0; }
+.trilho { width: 100%; max-width: 36px; height: 120px; display: flex; align-items: flex-end; background: var(--fundo); border-radius: 6px 6px 0 0; border-bottom: 1px solid var(--linha); }
+.trilho span { display: block; width: 100%; background: var(--marca); border-radius: 4px 4px 0 0; }
+.filtros select[hidden] { display: none; }

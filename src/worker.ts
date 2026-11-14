@@ -83,6 +83,7 @@ type LinhaQuestao = {
   gabarito_oficial: string;
   explicacao: string | null;
   explicacao_ativa: number;
+  tema: string | null;
 };
 
 // MODO DE TESTE: administradores veem um * no fim da alternativa correta.
@@ -100,6 +101,7 @@ function questaoPublica(q: LinhaQuestao, u?: Usuario) {
     numero: q.numero,
     area: q.area,
     area_nome: AREAS[q.area] ?? q.area,
+    tema: q.tema,
     enunciado: q.enunciado,
     alternativas,
     imagens: JSON.parse(q.imagens),
@@ -159,12 +161,12 @@ async function eu(env: Env, req: Request) {
 async function areas(env: Env, req: Request) {
   const u = await exigirAssinante(env, req);
   const { results } = await env.DB.prepare(
-    `SELECT q.area, q.ano, COUNT(*) AS total,
+    `SELECT q.area, q.tema, q.ano, COUNT(*) AS total,
             SUM(CASE WHEN EXISTS (SELECT 1 FROM respostas r WHERE r.questao_id = q.id AND r.usuario_id = ?) THEN 1 ELSE 0 END) AS feitas
-     FROM questoes q WHERE q.status = 'ativa' GROUP BY q.area, q.ano`,
+     FROM questoes q WHERE q.status = 'ativa' GROUP BY q.area, q.tema, q.ano`,
   )
     .bind(u.id)
-    .all<{ area: string; ano: number; total: number; feitas: number }>();
+    .all<{ area: string; tema: string | null; ano: number; total: number; feitas: number }>();
   return json({ areas: AREAS, contagem: results });
 }
 
@@ -172,6 +174,7 @@ async function proxima(env: Env, req: Request, url: URL) {
   const u = await exigirAssinante(env, req);
   const area = url.searchParams.get("area");
   const ano = url.searchParams.get("ano");
+  const tema = url.searchParams.get("tema");
   const modo = url.searchParams.get("modo") || "ineditas"; // ineditas | todas | erradas
   const pular = url.searchParams.get("pular"); // id da questão atual, para não repetir
   const conds = ["q.status = 'ativa'"];
@@ -179,6 +182,10 @@ async function proxima(env: Env, req: Request, url: URL) {
   if (area && AREAS[area]) {
     conds.push("q.area = ?");
     params.push(area);
+  }
+  if (tema) {
+    conds.push("q.tema = ?");
+    params.push(tema);
   }
   if (ano === "2025" || ano === "2026") {
     conds.push("q.ano = ?");
@@ -260,27 +267,39 @@ async function reportar(env: Env, req: Request, id: string) {
 
 async function desempenho(env: Env, req: Request) {
   const u = await exigirAssinante(env, req);
-  // Considera a última resposta de cada questão.
-  const { results } = await env.DB.prepare(
-    `WITH ultimas AS (
-       SELECT r.questao_id, r.correta,
-              ROW_NUMBER() OVER (PARTITION BY r.questao_id ORDER BY r.criado_em DESC) AS rn
-       FROM respostas r WHERE r.usuario_id = ?)
-     SELECT q.area, COUNT(*) AS feitas, SUM(u.correta) AS acertos
-     FROM ultimas u JOIN questoes q ON q.id = u.questao_id
-     WHERE u.rn = 1 GROUP BY q.area`,
-  )
-    .bind(u.id)
-    .all<{ area: string; feitas: number; acertos: number }>();
-  const totais = await env.DB.prepare(
-    "SELECT area, COUNT(*) AS total FROM questoes WHERE status = 'ativa' GROUP BY area",
-  ).all<{ area: string; total: number }>();
-  const hoje = await env.DB.prepare(
-    "SELECT COUNT(*) AS n FROM respostas WHERE usuario_id = ? AND criado_em > ?",
-  )
-    .bind(u.id, Date.now() - 86400_000)
-    .first<{ n: number }>();
-  return json({ areas: AREAS, por_area: results, totais: totais.results, ultimas_24h: hoje?.n ?? 0 });
+  const agora = Date.now();
+  // Por tema: última resposta do aluno em cada questão, e a média dos outros alunos
+  // (primeira resposta de cada aluno, para não inflar com repetições).
+  const temas = await env.DB.prepare(
+    `WITH minhas AS (
+       SELECT questao_id, correta, ROW_NUMBER() OVER (PARTITION BY questao_id ORDER BY criado_em DESC) AS rn
+       FROM respostas WHERE usuario_id = ?),
+     primeiras AS (
+       SELECT questao_id, correta, ROW_NUMBER() OVER (PARTITION BY usuario_id, questao_id ORDER BY criado_em) AS rn
+       FROM respostas WHERE usuario_id <> ?)
+     SELECT q.area, q.tema, COUNT(*) AS total,
+       SUM(CASE WHEN m.questao_id IS NOT NULL THEN 1 ELSE 0 END) AS feitas,
+       SUM(COALESCE(m.correta, 0)) AS acertos,
+       (SELECT AVG(p.correta) * 100 FROM primeiras p JOIN questoes q2 ON q2.id = p.questao_id
+          WHERE p.rn = 1 AND q2.tema = q.tema) AS media_alunos,
+       (SELECT COUNT(*) FROM primeiras p JOIN questoes q2 ON q2.id = p.questao_id
+          WHERE p.rn = 1 AND q2.tema = q.tema) AS n_alunos
+     FROM questoes q LEFT JOIN minhas m ON m.questao_id = q.id AND m.rn = 1
+     WHERE q.status = 'ativa' GROUP BY q.area, q.tema`,
+  ).bind(u.id, u.id).all<{ area: string; tema: string; total: number; feitas: number; acertos: number; media_alunos: number | null; n_alunos: number }>();
+  // Evolução: todas as respostas das últimas 8 semanas, agrupadas por semana (0 = atual).
+  const semanas = await env.DB.prepare(
+    `SELECT CAST((? - criado_em) / 604800000 AS INTEGER) AS semana, COUNT(*) AS respostas, SUM(correta) AS acertos,
+       AVG(NULLIF(tempo_ms, 0)) AS tempo_medio
+     FROM respostas WHERE usuario_id = ? AND criado_em > ? GROUP BY semana`,
+  ).bind(agora, u.id, agora - 8 * 604_800_000).all<{ semana: number; respostas: number; acertos: number; tempo_medio: number | null }>();
+  const geral = await env.DB.prepare(
+    `SELECT COUNT(*) AS respostas, AVG(NULLIF(tempo_ms, 0)) AS tempo_medio,
+       SUM(CASE WHEN criado_em > ? THEN 1 ELSE 0 END) AS ultimas_24h,
+       COUNT(DISTINCT date(criado_em / 1000, 'unixepoch', '-3 hours')) AS dias_estudo
+     FROM respostas WHERE usuario_id = ?`,
+  ).bind(agora - 86_400_000, u.id).first<{ respostas: number; tempo_medio: number | null; ultimas_24h: number; dias_estudo: number }>();
+  return json({ areas: AREAS, temas: temas.results, semanas: semanas.results, geral });
 }
 
 async function erros(env: Env, req: Request) {

@@ -12,7 +12,7 @@ const esquema = esquema1 + ";\n" + esquema2;
 type Questao = {
   id: string; ano: number; numero: number; area: string; enunciado: string;
   alternativas: Record<string, string>; gabarito: string | null; status: string;
-  imagens: string[]; gabarito_oficial: string;
+  imagens: string[]; gabarito_oficial: string; tema?: string | null;
 };
 
 let pronto: Promise<void> | null = null;
@@ -38,20 +38,22 @@ async function carregar(db: D1Database) {
   const comandos = esquema.replace(/--.*$/gm, "").split(";").map((c) => c.trim()).filter(Boolean)
     .map((c) => c.replace(/^CREATE (TABLE|INDEX) /, "CREATE $1 IF NOT EXISTS "));
   await db.batch(comandos.map((c) => db.prepare(c)));
+  // Colunas adicionadas depois (migrations/0003): ALTER falha se já existir.
+  try { await db.prepare("ALTER TABLE questoes ADD COLUMN tema TEXT").run(); } catch { /* já existe */ }
 
   const exp = explicacoes as Record<string, unknown>;
-  const sql = `INSERT INTO questoes (id, ano, numero, area, enunciado, alternativas, gabarito, status, imagens, gabarito_oficial, explicacao)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  const sql = `INSERT INTO questoes (id, ano, numero, area, enunciado, alternativas, gabarito, status, imagens, gabarito_oficial, explicacao, tema)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ON CONFLICT(id) DO UPDATE SET ano = excluded.ano, numero = excluded.numero, area = excluded.area, enunciado = excluded.enunciado,
   alternativas = excluded.alternativas, gabarito = excluded.gabarito, status = excluded.status, imagens = excluded.imagens,
-  gabarito_oficial = excluded.gabarito_oficial,
+  gabarito_oficial = excluded.gabarito_oficial, tema = excluded.tema,
   explicacao_ativa = CASE WHEN questoes.explicacao IS excluded.explicacao THEN questoes.explicacao_ativa ELSE 1 END,
   explicacao = excluded.explicacao`;
   const stmt = db.prepare(sql);
   const lista = (questoes as Questao[]).map((q) =>
     stmt.bind(
       q.id, q.ano, q.numero, q.area, q.enunciado, JSON.stringify(q.alternativas), q.gabarito, q.status,
-      JSON.stringify(q.imagens), q.gabarito_oficial, exp[q.id] ? JSON.stringify(exp[q.id]) : null,
+      JSON.stringify(q.imagens), q.gabarito_oficial, exp[q.id] ? JSON.stringify(exp[q.id]) : null, q.tema ?? null,
     ),
   );
   for (let i = 0; i < lista.length; i += 50) await db.batch(lista.slice(i, i + 50));

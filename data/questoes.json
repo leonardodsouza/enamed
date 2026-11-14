@@ -14,7 +14,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cardiologia"
  },
  {
   "id": "2025-002",
@@ -31,7 +32,8 @@
   "gabarito": null,
   "status": "excluida",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-003",
@@ -48,7 +50,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Trauma"
  },
  {
   "id": "2025-004",
@@ -65,7 +68,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Ginecologia geral"
  },
  {
   "id": "2025-005",
@@ -84,7 +88,8 @@
   "imagens": [
    "2025-q005-1.png"
   ],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infectologia"
  },
  {
   "id": "2025-006",
@@ -101,7 +106,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "SUS, planejamento e desastres"
  },
  {
   "id": "2025-007",
@@ -118,7 +124,8 @@
   "gabarito": null,
   "status": "anulada",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-008",
@@ -135,7 +142,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Neurologia e reumatologia"
  },
  {
   "id": "2025-009",
@@ -152,7 +160,8 @@
   "gabarito": null,
   "status": "anulada",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-010",
@@ -169,7 +178,8 @@
   "gabarito": null,
   "status": "anulada",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-011",
@@ -186,7 +196,8 @@
   "gabarito": null,
   "status": "anulada",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-012",
@@ -203,7 +214,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Prevenção e rastreamento"
  },
  {
   "id": "2025-013",
@@ -220,7 +232,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Vigilância e notificação"
  },
  {
   "id": "2025-014",
@@ -237,7 +250,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Humor, ansiedade e personalidade"
  },
  {
   "id": "2025-015",
@@ -254,7 +268,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Hematologia e nefrologia"
  },
  {
   "id": "2025-016",
@@ -271,7 +286,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2025-017",
@@ -288,7 +304,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Trauma"
  },
  {
   "id": "2025-018",
@@ -305,7 +322,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Ginecologia geral"
  },
  {
   "id": "2025-019",
@@ -322,7 +340,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Doenças crônicas e queixas comuns"
  },
  {
   "id": "2025-020",
@@ -339,7 +358,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Prevenção e rastreamento"
  },
  {
   "id": "2025-021",
@@ -356,7 +376,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Transtornos alimentares"
  },
  {
   "id": "2025-022",
@@ -373,7 +394,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Neurologia e reumatologia"
  },
  {
   "id": "2025-023",
@@ -390,7 +412,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Vigilância e notificação"
  },
  {
   "id": "2025-024",
@@ -407,7 +430,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2025-025",
@@ -424,7 +448,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Pré-natal"
  },
  {
   "id": "2025-026",
@@ -441,7 +466,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infectologia"
  },
  {
   "id": "2025-027",
@@ -458,7 +484,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Doenças crônicas e queixas comuns"
  },
  {
   "id": "2025-028",
@@ -475,7 +502,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Crise, suicídio e rede"
  },
  {
   "id": "2025-029",
@@ -492,7 +520,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Neurologia e reumatologia"
  },
  {
   "id": "2025-030",
@@ -509,7 +538,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia e neuro pediátrica"
  },
  {
   "id": "2025-031",
@@ -526,7 +556,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2025-032",
@@ -543,7 +574,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Pré-natal"
  },
  {
   "id": "2025-033",
@@ -560,7 +592,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infecções na APS"
  },
  {
   "id": "2025-034",
@@ -577,7 +610,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Epidemiologia e bioestatística"
  },
  {
   "id": "2025-035",
@@ -594,7 +628,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Humor, ansiedade e personalidade"
  },
  {
   "id": "2025-036",
@@ -611,7 +646,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cardiologia"
  },
  {
   "id": "2025-037",
@@ -628,7 +664,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2025-038",
@@ -645,7 +682,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2025-039",
@@ -662,7 +700,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Intercorrências e parto"
  },
  {
   "id": "2025-040",
@@ -679,7 +718,8 @@
   "gabarito": null,
   "status": "excluida",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-041",
@@ -696,7 +736,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Endocrinologia"
  },
  {
   "id": "2025-042",
@@ -713,7 +754,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Neonatologia"
  },
  {
   "id": "2025-043",
@@ -730,7 +772,8 @@
   "gabarito": null,
   "status": "anulada",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-044",
@@ -747,7 +790,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Intercorrências e parto"
  },
  {
   "id": "2025-045",
@@ -764,7 +808,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infecções na APS"
  },
  {
   "id": "2025-046",
@@ -781,7 +826,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Neurologia e reumatologia"
  },
  {
   "id": "2025-047",
@@ -798,7 +844,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2025-048",
@@ -815,7 +862,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Pós-operatório e complicações"
  },
  {
   "id": "2025-049",
@@ -832,7 +880,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Contracepção e planejamento"
  },
  {
   "id": "2025-050",
@@ -849,7 +898,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Endocrinologia"
  },
  {
   "id": "2025-051",
@@ -866,7 +916,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Gastro e hepatologia"
  },
  {
   "id": "2025-052",
@@ -883,7 +934,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2025-053",
@@ -902,7 +954,8 @@
   "imagens": [
    "2025-q053-1.png"
   ],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Trauma"
  },
  {
   "id": "2025-054",
@@ -919,7 +972,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Contracepção e planejamento"
  },
  {
   "id": "2025-055",
@@ -936,7 +990,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Populações, ética e violência"
  },
  {
   "id": "2025-056",
@@ -953,7 +1008,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "SUS, planejamento e desastres"
  },
  {
   "id": "2025-057",
@@ -970,7 +1026,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2025-058",
@@ -987,7 +1044,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Endocrinologia"
  },
  {
   "id": "2025-059",
@@ -1004,7 +1062,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia e neuro pediátrica"
  },
  {
   "id": "2025-060",
@@ -1021,7 +1080,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2025-061",
@@ -1038,7 +1098,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Ginecologia geral"
  },
  {
   "id": "2025-062",
@@ -1055,7 +1116,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Vigilância e notificação"
  },
  {
   "id": "2025-063",
@@ -1072,7 +1134,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Epidemiologia e bioestatística"
  },
  {
   "id": "2025-064",
@@ -1089,7 +1152,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Crise, suicídio e rede"
  },
  {
   "id": "2025-065",
@@ -1106,7 +1170,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Hematologia e nefrologia"
  },
  {
   "id": "2025-066",
@@ -1123,7 +1188,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Emergências pediátricas"
  },
  {
   "id": "2025-067",
@@ -1140,7 +1206,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Trauma"
  },
  {
   "id": "2025-068",
@@ -1157,7 +1224,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Oncologia ginecológica"
  },
  {
   "id": "2025-069",
@@ -1174,7 +1242,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Álcool e drogas"
  },
  {
   "id": "2025-070",
@@ -1191,7 +1260,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Vigilância e notificação"
  },
  {
   "id": "2025-071",
@@ -1208,7 +1278,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Humor, ansiedade e personalidade"
  },
  {
   "id": "2025-072",
@@ -1225,7 +1296,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Gastro e hepatologia"
  },
  {
   "id": "2025-073",
@@ -1242,7 +1314,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Emergências pediátricas"
  },
  {
   "id": "2025-074",
@@ -1259,7 +1332,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Pós-operatório e complicações"
  },
  {
   "id": "2025-075",
@@ -1276,7 +1350,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Contracepção e planejamento"
  },
  {
   "id": "2025-076",
@@ -1293,7 +1368,8 @@
   "gabarito": null,
   "status": "anulada",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-077",
@@ -1310,7 +1386,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Populações, ética e violência"
  },
  {
   "id": "2025-078",
@@ -1327,7 +1404,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Populações, ética e violência"
  },
  {
   "id": "2025-079",
@@ -1344,7 +1422,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infectologia"
  },
  {
   "id": "2025-080",
@@ -1361,7 +1440,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Neonatologia"
  },
  {
   "id": "2025-081",
@@ -1378,7 +1458,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2025-082",
@@ -1395,7 +1476,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Pré-natal"
  },
  {
   "id": "2025-083",
@@ -1412,7 +1494,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Oncologia ginecológica"
  },
  {
   "id": "2025-084",
@@ -1429,7 +1512,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Populações, ética e violência"
  },
  {
   "id": "2025-085",
@@ -1446,7 +1530,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Emergência e toxicologia"
  },
  {
   "id": "2025-086",
@@ -1463,7 +1548,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Neurologia e reumatologia"
  },
  {
   "id": "2025-087",
@@ -1480,7 +1566,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2025-088",
@@ -1497,7 +1584,8 @@
   "gabarito": null,
   "status": "excluida",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2025-089",
@@ -1514,7 +1602,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Intercorrências e parto"
  },
  {
   "id": "2025-090",
@@ -1531,7 +1620,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Prevenção e rastreamento"
  },
  {
   "id": "2025-091",
@@ -1548,7 +1638,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cardiologia"
  },
  {
   "id": "2025-092",
@@ -1565,7 +1656,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Emergências pediátricas"
  },
  {
   "id": "2025-093",
@@ -1582,7 +1674,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Doenças crônicas e queixas comuns"
  },
  {
   "id": "2025-094",
@@ -1599,7 +1692,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Oncologia ginecológica"
  },
  {
   "id": "2025-095",
@@ -1616,7 +1710,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Hemato e oncologia pediátrica"
  },
  {
   "id": "2025-096",
@@ -1635,7 +1730,8 @@
   "imagens": [
    "2025-q096-1.png"
   ],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Infecções na APS"
  },
  {
   "id": "2025-097",
@@ -1652,7 +1748,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2025-098",
@@ -1669,7 +1766,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2025-099",
@@ -1686,7 +1784,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": "Intercorrências e parto"
  },
  {
   "id": "2025-100",
@@ -1703,7 +1802,8 @@
   "gabarito": null,
   "status": "anulada",
   "imagens": [],
-  "gabarito_oficial": "definitivo"
+  "gabarito_oficial": "definitivo",
+  "tema": null
  },
  {
   "id": "2026-001",
@@ -1720,7 +1820,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infectologia"
  },
  {
   "id": "2026-002",
@@ -1737,7 +1838,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-003",
@@ -1754,7 +1856,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Trauma"
  },
  {
   "id": "2026-004",
@@ -1771,7 +1874,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Ginecologia geral"
  },
  {
   "id": "2026-005",
@@ -1788,7 +1892,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infectologia"
  },
  {
   "id": "2026-006",
@@ -1805,7 +1910,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "SUS, planejamento e desastres"
  },
  {
   "id": "2026-007",
@@ -1822,7 +1928,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Humor, ansiedade e personalidade"
  },
  {
   "id": "2026-008",
@@ -1839,7 +1946,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Cardiologia"
  },
  {
   "id": "2026-009",
@@ -1856,7 +1964,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Emergências pediátricas"
  },
  {
   "id": "2026-010",
@@ -1873,7 +1982,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pós-operatório e complicações"
  },
  {
   "id": "2026-011",
@@ -1890,7 +2000,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Intercorrências e parto"
  },
  {
   "id": "2026-012",
@@ -1907,7 +2018,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções na APS"
  },
  {
   "id": "2026-013",
@@ -1924,7 +2036,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Doenças crônicas e queixas comuns"
  },
  {
   "id": "2026-014",
@@ -1941,7 +2054,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Transtornos alimentares"
  },
  {
   "id": "2026-015",
@@ -1958,7 +2072,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infectologia"
  },
  {
   "id": "2026-016",
@@ -1975,7 +2090,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-017",
@@ -1992,7 +2108,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2026-018",
@@ -2009,7 +2126,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Intercorrências e parto"
  },
  {
   "id": "2026-019",
@@ -2026,7 +2144,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Doenças crônicas e queixas comuns"
  },
  {
   "id": "2026-020",
@@ -2043,7 +2162,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Vigilância e notificação"
  },
  {
   "id": "2026-021",
@@ -2060,7 +2180,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Humor, ansiedade e personalidade"
  },
  {
   "id": "2026-022",
@@ -2077,7 +2198,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Endocrinologia"
  },
  {
   "id": "2026-023",
@@ -2094,7 +2216,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Hemato e oncologia pediátrica"
  },
  {
   "id": "2026-024",
@@ -2111,7 +2234,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pós-operatório e complicações"
  },
  {
   "id": "2026-025",
@@ -2128,7 +2252,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Ginecologia geral"
  },
  {
   "id": "2026-026",
@@ -2145,7 +2270,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Prevenção e rastreamento"
  },
  {
   "id": "2026-027",
@@ -2162,7 +2288,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Epidemiologia e bioestatística"
  },
  {
   "id": "2026-028",
@@ -2179,7 +2306,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Humor, ansiedade e personalidade"
  },
  {
   "id": "2026-029",
@@ -2198,7 +2326,8 @@
   "imagens": [
    "2026-q029-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Cardiologia"
  },
  {
   "id": "2026-030",
@@ -2215,7 +2344,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2026-031",
@@ -2232,7 +2362,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pós-operatório e complicações"
  },
  {
   "id": "2026-032",
@@ -2249,7 +2380,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pré-natal"
  },
  {
   "id": "2026-033",
@@ -2266,7 +2398,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2026-034",
@@ -2283,7 +2416,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Epidemiologia e bioestatística"
  },
  {
   "id": "2026-035",
@@ -2300,7 +2434,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Humor, ansiedade e personalidade"
  },
  {
   "id": "2026-036",
@@ -2317,7 +2452,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Hematologia e nefrologia"
  },
  {
   "id": "2026-037",
@@ -2336,7 +2472,8 @@
   "imagens": [
    "2026-q037-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Trauma"
  },
  {
   "id": "2026-038",
@@ -2353,7 +2490,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Trauma"
  },
  {
   "id": "2026-039",
@@ -2370,7 +2508,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pré-natal"
  },
  {
   "id": "2026-040",
@@ -2387,7 +2526,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Cardiologia"
  },
  {
   "id": "2026-041",
@@ -2404,7 +2544,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Emergência e toxicologia"
  },
  {
   "id": "2026-042",
@@ -2421,7 +2562,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-043",
@@ -2438,7 +2580,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Urologia e ortopedia"
  },
  {
   "id": "2026-044",
@@ -2455,7 +2598,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pré-natal"
  },
  {
   "id": "2026-045",
@@ -2472,7 +2616,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-046",
@@ -2489,7 +2634,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Cardiologia"
  },
  {
   "id": "2026-047",
@@ -2506,7 +2652,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Transtornos alimentares"
  },
  {
   "id": "2026-048",
@@ -2523,7 +2670,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Trauma"
  },
  {
   "id": "2026-049",
@@ -2540,7 +2688,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Contracepção e planejamento"
  },
  {
   "id": "2026-050",
@@ -2557,7 +2706,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Prevenção e rastreamento"
  },
  {
   "id": "2026-051",
@@ -2574,7 +2724,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Emergência e toxicologia"
  },
  {
   "id": "2026-052",
@@ -2593,7 +2744,8 @@
   "imagens": [
    "2026-q052-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-053",
@@ -2612,7 +2764,8 @@
   "imagens": [
    "2026-q053-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Neonatologia"
  },
  {
   "id": "2026-054",
@@ -2629,7 +2782,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pré-natal"
  },
  {
   "id": "2026-055",
@@ -2646,7 +2800,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Endocrinologia"
  },
  {
   "id": "2026-056",
@@ -2663,7 +2818,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Epidemiologia e bioestatística"
  },
  {
   "id": "2026-057",
@@ -2680,7 +2836,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Crise, suicídio e rede"
  },
  {
   "id": "2026-058",
@@ -2697,7 +2854,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Gastro e hepatologia"
  },
  {
   "id": "2026-059",
@@ -2714,7 +2872,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Hemato e oncologia pediátrica"
  },
  {
   "id": "2026-060",
@@ -2731,7 +2890,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Trauma"
  },
  {
   "id": "2026-061",
@@ -2748,7 +2908,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Oncologia ginecológica"
  },
  {
   "id": "2026-062",
@@ -2765,7 +2926,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "SUS, planejamento e desastres"
  },
  {
   "id": "2026-063",
@@ -2782,7 +2944,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Epidemiologia e bioestatística"
  },
  {
   "id": "2026-064",
@@ -2799,7 +2962,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Crise, suicídio e rede"
  },
  {
   "id": "2026-065",
@@ -2816,7 +2980,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infectologia"
  },
  {
   "id": "2026-066",
@@ -2833,7 +2998,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Emergências pediátricas"
  },
  {
   "id": "2026-067",
@@ -2852,7 +3018,8 @@
   "imagens": [
    "2026-q067-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Trauma"
  },
  {
   "id": "2026-068",
@@ -2869,7 +3036,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Endocrinologia"
  },
  {
   "id": "2026-069",
@@ -2886,7 +3054,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Populações, ética e violência"
  },
  {
   "id": "2026-070",
@@ -2903,7 +3072,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Doenças crônicas e queixas comuns"
  },
  {
   "id": "2026-071",
@@ -2920,7 +3090,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Álcool e drogas"
  },
  {
   "id": "2026-072",
@@ -2937,7 +3108,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-073",
@@ -2954,7 +3126,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-074",
@@ -2971,7 +3144,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Urologia e ortopedia"
  },
  {
   "id": "2026-075",
@@ -2990,7 +3164,8 @@
   "imagens": [
    "2026-q075-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Ginecologia geral"
  },
  {
   "id": "2026-076",
@@ -3007,7 +3182,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2026-077",
@@ -3024,7 +3200,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "SUS, planejamento e desastres"
  },
  {
   "id": "2026-078",
@@ -3041,7 +3218,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Hematologia e nefrologia"
  },
  {
   "id": "2026-079",
@@ -3058,7 +3236,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infectologia"
  },
  {
   "id": "2026-080",
@@ -3075,7 +3254,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Vigilância e notificação"
  },
  {
   "id": "2026-081",
@@ -3094,7 +3274,8 @@
   "imagens": [
    "2026-q081-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Cirurgia abdominal"
  },
  {
   "id": "2026-082",
@@ -3111,7 +3292,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pré-natal"
  },
  {
   "id": "2026-083",
@@ -3128,7 +3310,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Doenças crônicas e queixas comuns"
  },
  {
   "id": "2026-084",
@@ -3145,7 +3328,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Populações, ética e violência"
  },
  {
   "id": "2026-085",
@@ -3162,7 +3346,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Crise, suicídio e rede"
  },
  {
   "id": "2026-086",
@@ -3179,7 +3364,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Gastro e hepatologia"
  },
  {
   "id": "2026-087",
@@ -3196,7 +3382,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Populações, ética e violência"
  },
  {
   "id": "2026-088",
@@ -3213,7 +3400,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Vigilância e notificação"
  },
  {
   "id": "2026-089",
@@ -3232,7 +3420,8 @@
   "imagens": [
    "2026-q089-1.png"
   ],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Oncologia ginecológica"
  },
  {
   "id": "2026-090",
@@ -3249,7 +3438,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infectologia"
  },
  {
   "id": "2026-091",
@@ -3266,7 +3456,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Crescimento e desenvolvimento"
  },
  {
   "id": "2026-092",
@@ -3283,7 +3474,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Infecções e imunização"
  },
  {
   "id": "2026-093",
@@ -3300,7 +3492,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pós-operatório e complicações"
  },
  {
   "id": "2026-094",
@@ -3317,7 +3510,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Ginecologia geral"
  },
  {
   "id": "2026-095",
@@ -3334,7 +3528,8 @@
   "gabarito": "C",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Álcool e drogas"
  },
  {
   "id": "2026-096",
@@ -3351,7 +3546,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Endocrinologia"
  },
  {
   "id": "2026-097",
@@ -3368,7 +3564,8 @@
   "gabarito": "B",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Hemato e oncologia pediátrica"
  },
  {
   "id": "2026-098",
@@ -3385,7 +3582,8 @@
   "gabarito": "A",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Cirurgia e neuro pediátrica"
  },
  {
   "id": "2026-099",
@@ -3402,7 +3600,8 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "Pré-natal"
  },
  {
   "id": "2026-100",
@@ -3419,6 +3618,7 @@
   "gabarito": "D",
   "status": "ativa",
   "imagens": [],
-  "gabarito_oficial": "preliminar"
+  "gabarito_oficial": "preliminar",
+  "tema": "SUS, planejamento e desastres"
  }
 ]

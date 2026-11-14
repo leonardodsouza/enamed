@@ -199,6 +199,7 @@ async function proximaQuestao() {
 
 function mostrarQuestao(q) {
   atual = q;
+  window.scrollTo({ top: 0 });
   const inicio = Date.now();
   let escolhida = null;
   let respondida = false;
@@ -260,7 +261,7 @@ function mostrarResultado(q, escolhida, r, botoes) {
     b.querySelector(".pct").title = "Quantos alunos marcaram esta alternativa";
   });
   document.getElementById("res").innerHTML = `<p class="resultado ${r.correta ? "ok" : "nok"}">${r.correta ? "Você acertou!" : `Resposta certa: ${r.gabarito}`}</p>`;
-  document.getElementById("acoes").innerHTML = `<button class="botao" id="prox">Próxima questão</button><button class="botao sec peq" id="rep">Reportar erro</button>`;
+  document.getElementById("acoes").innerHTML = `<button class="botao" id="prox">Próxima questão →</button><button class="botao sec peq" id="rep">Reportar erro</button>`;
   document.getElementById("prox").onclick = proximaQuestao;
   document.getElementById("rep").onclick = () => reportar(q);
   const e = r.explicacao;
@@ -274,6 +275,9 @@ function mostrarResultado(q, escolhida, r, botoes) {
         ${e.referencia ? `<p class="num" style="margin-top:12px">Referência: ${esc(e.referencia)}</p>` : ""}
       </section>`
     : `<section class="explicacao"><p class="sub">A explicação desta questão está em revisão. O gabarito oficial acima vale normalmente.</p></section>`;
+  // segundo botão no fim da explicação, para não precisar voltar ao topo
+  document.getElementById("exp").insertAdjacentHTML("beforeend", `<div class="acoes" style="margin-top:20px"><button class="botao" id="prox2">Próxima questão →</button></div>`);
+  document.getElementById("prox2").onclick = proximaQuestao;
 }
 
 function reportar(q) {

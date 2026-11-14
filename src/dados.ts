@@ -4,7 +4,10 @@
 // data/*.json chega ao banco sem nenhum comando manual.
 import questoes from "../data/questoes.json";
 import explicacoes from "../data/explicacoes.json";
-import esquema from "../migrations/0001_init.sql";
+import esquema1 from "../migrations/0001_init.sql";
+import esquema2 from "../migrations/0002_revisao.sql";
+
+const esquema = esquema1 + ";\n" + esquema2;
 
 type Questao = {
   id: string; ano: number; numero: number; area: string; enunciado: string;
@@ -20,7 +23,7 @@ export function garantirDados(db: D1Database): Promise<void> {
 }
 
 async function versaoDosDados(): Promise<string> {
-  const bytes = new TextEncoder().encode(JSON.stringify([questoes, explicacoes]));
+  const bytes = new TextEncoder().encode(JSON.stringify([questoes, explicacoes, esquema]));
   const h = await crypto.subtle.digest("SHA-256", bytes);
   return [...new Uint8Array(h)].slice(0, 12).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
@@ -32,7 +35,7 @@ async function carregar(db: D1Database) {
   if (atual === versao) return;
 
   // Cria as tabelas que ainda não existem (mesmo SQL de migrations/).
-  const comandos = esquema.split(";").map((c) => c.trim()).filter(Boolean)
+  const comandos = esquema.replace(/--.*$/gm, "").split(";").map((c) => c.trim()).filter(Boolean)
     .map((c) => c.replace(/^CREATE (TABLE|INDEX) /, "CREATE $1 IF NOT EXISTS "));
   await db.batch(comandos.map((c) => db.prepare(c)));
 

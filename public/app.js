@@ -52,7 +52,7 @@ function desenharNav(rota) {
     return;
   }
   nav.innerHTML =
-    (sessao.assinatura_ativa ? link("estudar", "Estudar") + link("desempenho", "Desempenho") + link("erros", "Meus erros") : "") +
+    (sessao.assinatura_ativa ? link("estudar", "Estudar") + link("revisar", "Revisar") + link("desempenho", "Desempenho") + link("erros", "Meus erros") : "") +
     link("assinatura", "Assinatura") +
     `<button id="sair">Sair</button>`;
   document.getElementById("sair").onclick = async () => {
@@ -347,6 +347,72 @@ async function telaErros() {
       <p>${esc(e.inicio)}…</p></a>`).join("")}</div>` : `<div class="cartao vazio">Nenhum erro por aqui ainda.</div>`}`;
 }
 
+// ---------- revisar (active recall + repetição espaçada) ----------
+async function telaRevisar() {
+  if (!sessao?.assinatura_ativa) return (location.hash = "#/assinatura");
+  const d = await api("/api/revisao/proxima");
+  const topo = `<h1>Revisar</h1>
+    <p class="sub">Leia o caso, responda de cabeça e só depois revele. Você decide quando cada questão volta.</p>
+    <div class="kpis"><div class="kpi"><b>${d.pendentes}</b><span>para revisar agora</span></div>
+    <div class="kpi"><b>${d.total}</b><span>questões no seu baralho</span></div></div>`;
+  if (!d.cartao) {
+    const quando = d.proxima_em ? new Date(d.proxima_em).toLocaleString("pt-BR", { weekday: "long", hour: "2-digit", minute: "2-digit" }) : null;
+    app.innerHTML = topo + `<div class="cartao vazio">${
+      d.total === 0
+        ? `Seu baralho está vazio. Toda questão que você responder em <a href="#/estudar">Estudar</a> entra aqui: as que errar voltam logo; as que acertar, em 3 dias.`
+        : `Nada para revisar agora. ${quando ? `A próxima volta ${esc(quando)}.` : ""}<br><br><a class="botao sec" href="#/estudar">Fazer questões novas</a>`
+    }</div>`;
+    return;
+  }
+  const c = d.cartao, q = c.questao;
+  app.innerHTML = topo + `<article class="cartao">
+    <div class="meta"><span class="tag">${esc(q.area_nome)}</span><span>${esc(q.fonte)}</span></div>
+    <div class="enunciado">${paragrafos(q.enunciado)}${q.imagens.map((i) => `<img src="/img/${esc(i)}" alt="Imagem da questão" loading="lazy">`).join("")}</div>
+    <div id="verso"><div class="acoes"><button class="botao" id="revelar">Mostrar resposta</button>
+      <button class="botao sec" id="alts">Ver alternativas</button></div>
+      <p class="num" style="margin-top:10px">Pense na resposta antes de revelar. Atalho: barra de espaço.</p></div>
+  </article>`;
+  document.getElementById("alts").onclick = (ev) => {
+    ev.target.remove();
+    document.getElementById("verso").insertAdjacentHTML("beforebegin",
+      `<div class="alts">${Object.entries(q.alternativas).map(([l, t]) => `<div class="alt" style="cursor:default"><span class="letra">${l}</span><span>${esc(t)}</span><span></span></div>`).join("")}</div>`);
+  };
+  const revelar = () => {
+    const nomes = { errei: "Errei", dificil: "Difícil", facil: "Fácil" };
+    document.getElementById("verso").innerHTML = `
+      <div class="explicacao">
+        <h3 style="margin-top:0">Resposta</h3>
+        <p class="chave"><b>${esc(c.resposta.letra)})</b> ${esc(c.resposta.texto || "")}</p>
+        ${c.ponto_chave ? `<h3>Ponto-chave</h3><p>${esc(c.ponto_chave)}</p>` : ""}
+        ${c.resumo ? `<h3>Raciocínio</h3>${paragrafos(c.resumo)}` : ""}
+        <p class="aviso-ia" style="margin-top:16px">Explicação gerada por IA, pode conter erros. O gabarito é o oficial do Inep${c.gabarito_oficial === "preliminar" ? " (preliminar)" : ""}.</p>
+        <h3>Como foi?</h3>
+        <div class="acoes">${c.opcoes.map((o, i) => `<button class="botao ${o.nota === "facil" ? "" : "sec"}" data-nota="${o.nota}">${nomes[o.nota]} <small style="font-weight:400;opacity:.8">· ${esc(o.espera)}</small></button>`).join("")}</div>
+        <p class="num" style="margin-top:10px">Atalhos: 1 Errei · 2 Difícil · 3 Fácil</p>
+      </div>`;
+    document.querySelectorAll("[data-nota]").forEach((b) => (b.onclick = () => avaliar(b.dataset.nota)));
+    document.querySelectorAll(".alts .alt").forEach((a) => {
+      if (a.querySelector(".letra").textContent === c.resposta.letra) a.classList.add("certa");
+    });
+    document.getElementById("alts")?.remove();
+    revelado = true;
+  };
+  let revelado = false, enviando = false;
+  const avaliar = async (nota) => {
+    if (enviando) return;
+    enviando = true;
+    await api(`/api/revisao/${encodeURIComponent(q.id)}`, { method: "POST", body: { nota } });
+    window.scrollTo({ top: 0 });
+    telaRevisar();
+  };
+  document.getElementById("revelar").onclick = revelar;
+  document.onkeydown = (e) => {
+    if (e.target.closest?.("input, textarea, select")) return;
+    if (!revelado && (e.key === " " || e.key === "Enter")) { e.preventDefault(); revelar(); }
+    else if (revelado && ["1", "2", "3"].includes(e.key)) avaliar(["errei", "dificil", "facil"][Number(e.key) - 1]);
+  };
+}
+
 // ---------- roteador ----------
 async function rotear() {
   const [rota, param] = location.hash.replace(/^#\/?/, "").split("?")[0].split("/");
@@ -358,6 +424,7 @@ async function rotear() {
     if (rota === "cadastro") return telaForm("cadastro");
     if (rota === "assinatura") return telaAssinatura();
     if (rota === "estudar") return await telaEstudar(param);
+    if (rota === "revisar") return await telaRevisar();
     if (rota === "desempenho") return await telaDesempenho();
     if (rota === "erros") return await telaErros();
     if (sessao?.usuario) return (location.hash = sessao.assinatura_ativa ? "#/estudar" : "#/assinatura");

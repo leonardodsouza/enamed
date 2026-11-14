@@ -225,6 +225,7 @@ async function responder(env: Env, req: Request, id: string) {
   )
     .bind(u.id, id, alternativa, correta ? 1 : 0, Math.max(0, Math.min(Number(tempo_ms) || 0, 3_600_000)), Date.now())
     .run();
+  await entrarNaRevisao(env, u.id, id, correta);
   const dist = await env.DB.prepare(
     "SELECT alternativa, COUNT(*) AS n FROM respostas WHERE questao_id = ? GROUP BY alternativa",
   )
@@ -297,6 +298,95 @@ async function erros(env: Env, req: Request) {
     .bind(u.id)
     .all();
   return json({ areas: AREAS, erros: results });
+}
+
+// ---------- revisão espaçada (active recall) ----------
+
+const DIA = 86_400_000;
+
+// Toda questão respondida entra no baralho. Errou: volta já. Acertou: em 3 dias.
+async function entrarNaRevisao(env: Env, usuarioId: number, questaoId: string, correta: boolean) {
+  const agora = Date.now();
+  if (correta) {
+    await env.DB.prepare(
+      `INSERT OR IGNORE INTO revisoes (usuario_id, questao_id, intervalo_dias, repeticoes, proxima_em) VALUES (?, ?, 3, 1, ?)`,
+    ).bind(usuarioId, questaoId, agora + 3 * DIA).run();
+  } else {
+    await env.DB.prepare(
+      `INSERT INTO revisoes (usuario_id, questao_id, intervalo_dias, repeticoes, proxima_em) VALUES (?, ?, 0, 0, ?)
+       ON CONFLICT(usuario_id, questao_id) DO UPDATE SET intervalo_dias = 0, repeticoes = 0, proxima_em = excluded.proxima_em,
+         facilidade = MAX(1.3, revisoes.facilidade - 0.2)`,
+    ).bind(usuarioId, questaoId, agora).run();
+  }
+}
+
+type Nota = "errei" | "dificil" | "facil";
+type EstadoRevisao = { intervalo_dias: number; facilidade: number; repeticoes: number };
+
+// Variante simples do SM-2. Devolve o novo estado e quando o cartão volta.
+function agendar(e: EstadoRevisao, nota: Nota): EstadoRevisao & { espera_ms: number } {
+  if (nota === "errei")
+    return { intervalo_dias: 0, repeticoes: 0, facilidade: Math.max(1.3, e.facilidade - 0.2), espera_ms: 10 * 60_000 };
+  if (nota === "dificil") {
+    const i = Math.max(1, Math.round(e.intervalo_dias * 1.2));
+    return { intervalo_dias: i, repeticoes: e.repeticoes + 1, facilidade: Math.max(1.3, e.facilidade - 0.15), espera_ms: i * DIA };
+  }
+  const i = e.repeticoes === 0 ? 3 : Math.max(e.intervalo_dias + 1, Math.round(e.intervalo_dias * e.facilidade));
+  return { intervalo_dias: i, repeticoes: e.repeticoes + 1, facilidade: Math.min(3, e.facilidade + 0.1), espera_ms: i * DIA };
+}
+
+function rotuloEspera(ms: number) {
+  if (ms < DIA) return `${Math.round(ms / 60_000)} min`;
+  const d = Math.round(ms / DIA);
+  if (d < 30) return d === 1 ? "1 dia" : `${d} dias`;
+  const m = Math.round(d / 30);
+  return m === 1 ? "1 mês" : `${m} meses`;
+}
+
+async function revisaoProxima(env: Env, req: Request) {
+  const u = await exigirAssinante(env, req);
+  const agora = Date.now();
+  const contagem = await env.DB.prepare(
+    `SELECT COUNT(*) AS total, SUM(CASE WHEN rv.proxima_em <= ? THEN 1 ELSE 0 END) AS pendentes,
+       MIN(CASE WHEN rv.proxima_em > ? THEN rv.proxima_em END) AS proxima_em
+     FROM revisoes rv JOIN questoes q ON q.id = rv.questao_id AND q.status = 'ativa' WHERE rv.usuario_id = ?`,
+  ).bind(agora, agora, u.id).first<{ total: number; pendentes: number | null; proxima_em: number | null }>();
+  const linha = await env.DB.prepare(
+    `SELECT q.*, rv.intervalo_dias, rv.facilidade, rv.repeticoes FROM revisoes rv
+     JOIN questoes q ON q.id = rv.questao_id AND q.status = 'ativa'
+     WHERE rv.usuario_id = ? AND rv.proxima_em <= ? ORDER BY rv.proxima_em LIMIT 1`,
+  ).bind(u.id, agora).first<LinhaQuestao & EstadoRevisao>();
+  const resumo = { total: contagem?.total ?? 0, pendentes: contagem?.pendentes ?? 0, proxima_em: contagem?.proxima_em ?? null };
+  if (!linha) return json({ cartao: null, ...resumo });
+  const exp = linha.explicacao && linha.explicacao_ativa ? JSON.parse(linha.explicacao) : null;
+  const alternativas = JSON.parse(linha.alternativas) as Record<string, string>;
+  const opcoes = (["errei", "dificil", "facil"] as Nota[]).map((nota) => ({ nota, espera: rotuloEspera(agendar(linha, nota).espera_ms) }));
+  return json({
+    ...resumo,
+    cartao: {
+      questao: questaoPublica(linha),
+      resposta: { letra: linha.gabarito, texto: linha.gabarito ? alternativas[linha.gabarito] : null },
+      ponto_chave: exp?.ponto_chave ?? null,
+      resumo: exp?.resumo ?? null,
+      gabarito_oficial: linha.gabarito_oficial,
+      opcoes,
+    },
+  });
+}
+
+async function revisaoAvaliar(env: Env, req: Request, id: string) {
+  const u = await exigirAssinante(env, req);
+  const { nota } = await corpo<{ nota?: Nota }>(req);
+  if (!nota || !["errei", "dificil", "facil"].includes(nota)) throw new ErroHttp(400, "Nota inválida.");
+  const e = await env.DB.prepare("SELECT intervalo_dias, facilidade, repeticoes FROM revisoes WHERE usuario_id = ? AND questao_id = ?")
+    .bind(u.id, id).first<EstadoRevisao>();
+  if (!e) throw new ErroHttp(404, "Cartão não encontrado.");
+  const n = agendar(e, nota);
+  const agora = Date.now();
+  await env.DB.prepare(
+    `UPDATE revisoes SET intervalo_dias = ?, facilidade = ?, repeticoes = ?, proxima_em = ?, revisada_em = ? WHERE usuario_id = ? AND questao_id = ?`,
+  ).bind(n.intervalo_dias, n.facilidade, n.repeticoes, agora + n.espera_ms, agora, u.id, id).run();
+  return json({ ok: true, volta_em: rotuloEspera(n.espera_ms) });
 }
 
 // ---------- pagamento (Mercado Pago Checkout Pro, aceita Pix) ----------
@@ -390,6 +480,9 @@ export default {
       if (m === "GET" && p === "/api/questoes/proxima") return await proxima(env, req, url);
       if (m === "GET" && p === "/api/desempenho") return await desempenho(env, req);
       if (m === "GET" && p === "/api/erros") return await erros(env, req);
+      if (m === "GET" && p === "/api/revisao/proxima") return await revisaoProxima(env, req);
+      const rv = p.match(/^\/api\/revisao\/([\w-]+)$/);
+      if (rv && m === "POST") return await revisaoAvaliar(env, req, rv[1]);
       if (m === "POST" && p === "/api/pagamento/checkout") return await checkout(env, req);
       if (m === "POST" && p === "/api/pagamento/webhook") return await webhook(env, req, url);
       const qm = p.match(/^\/api\/questoes\/([\w-]+)(\/responder|\/reportar)?$/);

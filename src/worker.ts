@@ -85,7 +85,15 @@ type LinhaQuestao = {
   explicacao_ativa: number;
 };
 
-function questaoPublica(q: LinhaQuestao) {
+// MODO DE TESTE: administradores veem um * no fim da alternativa correta.
+// Remover antes de abrir para os alunos (apague este bloco e o uso em questaoPublica).
+const MARCAR_GABARITO_PARA_ADMIN = true;
+
+function questaoPublica(q: LinhaQuestao, u?: Usuario) {
+  const alternativas: Record<string, string> = JSON.parse(q.alternativas);
+  if (MARCAR_GABARITO_PARA_ADMIN && u?.admin === 1 && q.gabarito && alternativas[q.gabarito]) {
+    alternativas[q.gabarito] += " *";
+  }
   return {
     id: q.id,
     ano: q.ano,
@@ -93,7 +101,7 @@ function questaoPublica(q: LinhaQuestao) {
     area: q.area,
     area_nome: AREAS[q.area] ?? q.area,
     enunciado: q.enunciado,
-    alternativas: JSON.parse(q.alternativas),
+    alternativas,
     imagens: JSON.parse(q.imagens),
     gabarito_oficial: q.gabarito_oficial,
     fonte: `ENAMED ${q.ano} · Inep · Caderno 01, questão ${q.numero}`,
@@ -194,14 +202,14 @@ async function proxima(env: Env, req: Request, url: URL) {
     .bind(...params)
     .first<LinhaQuestao>();
   if (!q) return json({ questao: null });
-  return json({ questao: questaoPublica(q) });
+  return json({ questao: questaoPublica(q, u) });
 }
 
 async function obterQuestao(env: Env, req: Request, id: string) {
-  await exigirAssinante(env, req);
+  const u = await exigirAssinante(env, req);
   const q = await env.DB.prepare("SELECT * FROM questoes WHERE id = ? AND status = 'ativa'").bind(id).first<LinhaQuestao>();
   if (!q) throw new ErroHttp(404, "Questão não encontrada.");
-  return json({ questao: questaoPublica(q) });
+  return json({ questao: questaoPublica(q, u) });
 }
 
 async function responder(env: Env, req: Request, id: string) {
